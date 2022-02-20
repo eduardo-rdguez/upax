@@ -23,4 +23,12 @@ public class EmployeeWorkedHoursRequest {
   @JsonFormat(pattern = "yyyy-MM-dd")
   private Date workedDate;
 
+  @JsonProperty("start_date")
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private Date startDate;
+
+  @JsonProperty("end_date")
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private Date endDate;
+
 }

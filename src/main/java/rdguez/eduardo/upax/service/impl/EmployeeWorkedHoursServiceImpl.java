@@ -36,7 +36,7 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
     Integer workedHours = employeeWorkedHoursRequest.getWorkedHours();
     Date workedDate = employeeWorkedHoursRequest.getWorkedDate();
 
-    Optional<EmployeeWorkedHours> employeeWorkedHours = findWorkedHoursEmployeeIdAndWorkedDate(
+    Optional<EmployeeWorkedHours> employeeWorkedHours = findWorkedHoursByEmployeeIdAndWorkedDate(
       employeeId, workedDate
     );
     EmployeeResponse employeeResponse = EmployeeResponse.builder().build();
@@ -53,12 +53,12 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
     return employeeResponse;
   }
 
-  private Optional<EmployeeWorkedHours> findWorkedHoursEmployeeIdAndWorkedDate(Long id, Date workedDate) {
+  private Optional<EmployeeWorkedHours> findWorkedHoursByEmployeeIdAndWorkedDate(Long id, Date workedDate) {
     return employeeWorkedHoursRepository.findOneByEmployee_IdAndWorkedDate(id, workedDate);
   }
 
   private boolean validateWorkedHours(Integer workedHours) {
-    return workedHours <= Constants.ALLOWED_HOURS_WORKED;
+    return workedHours <= Constants.HOURS_ALLOWED_WORKED;
   }
 
   private EmployeeResponse saveEmployeeWorkedHoursBy(
@@ -98,7 +98,7 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
     Integer totalWorkedHours = sumEmployeeWorkedHoursBy(employeeWorkedHoursList);
 
     return EmployeeWorkedHoursResponse.builder()
-      .total_worked_hours(totalWorkedHours)
+      .totalWorkedHours(totalWorkedHours)
       .success(!employeeWorkedHoursList.isEmpty())
       .build();
   }

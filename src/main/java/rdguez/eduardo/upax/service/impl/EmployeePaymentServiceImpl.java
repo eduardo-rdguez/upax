@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.domain.EmployeeWorkedHours;
+import rdguez.eduardo.upax.dto.EmployeePaymentDto;
 import rdguez.eduardo.upax.model.EmployeePaymentResponse;
 import rdguez.eduardo.upax.model.EmployeeWorkedHoursRequest;
 import rdguez.eduardo.upax.service.EmployeePaymentService;
@@ -60,10 +61,7 @@ public class EmployeePaymentServiceImpl implements EmployeePaymentService {
     Integer workingDays = employeeWorkedHoursList.size();
     Double payment = calculatePaymentBySalaryAndWorkingDays(salary, workingDays);
 
-    return EmployeePaymentResponse.builder()
-      .payment(payment)
-      .success(true)
-      .build();
+    return EmployeePaymentDto.toResponse(payment);
   }
 
 }

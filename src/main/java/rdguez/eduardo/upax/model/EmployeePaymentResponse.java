@@ -1,6 +1,9 @@
 package rdguez.eduardo.upax.model;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Builder
 @Getter

@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class UpaxApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(UpaxApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(UpaxApplication.class, args);
+  }
 
 }

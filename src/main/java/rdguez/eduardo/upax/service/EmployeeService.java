@@ -4,7 +4,6 @@ import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.model.EmployeeRequest;
 import rdguez.eduardo.upax.model.EmployeeResponse;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface EmployeeService {

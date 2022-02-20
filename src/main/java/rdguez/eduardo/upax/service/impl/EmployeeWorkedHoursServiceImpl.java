@@ -3,6 +3,7 @@ package rdguez.eduardo.upax.service.impl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import rdguez.eduardo.upax.constant.Constants;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.domain.EmployeeWorkedHours;
 import rdguez.eduardo.upax.dto.EmployeeWorkedHoursDto;
@@ -36,8 +37,9 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
     EmployeeResponse employeeResponse = EmployeeResponse.builder().build();
     Long employeeId = employeeWorkedHoursRequest.getEmployeeId();
     Date workedDate = employeeWorkedHoursRequest.getWorkedDate();
+    Integer workedHours = employeeWorkedHoursRequest.getWorkedHours();
 
-    if (validateWorkedDate(workedDate)) {
+    if (validateWorkedDate(workedDate) && validateWorkedHours(workedHours)) {
       Optional<EmployeeWorkedHours> employeeWorkedHours = findWorkedHoursByEmployeeIdAndWorkedDate(
         employeeId, workedDate
       );
@@ -60,6 +62,10 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
     LocalDate currentLocalDate = DateUtil.currentLocalDate();
 
     return currentLocalDate.isAfter(workedLocalDate);
+  }
+
+  public static boolean validateWorkedHours(Integer workedHours) {
+    return workedHours <= Constants.HOURS_ALLOWED_WORKED;
   }
 
   private Optional<EmployeeWorkedHours> findWorkedHoursByEmployeeIdAndWorkedDate(Long id, Date workedDate) {

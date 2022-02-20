@@ -19,17 +19,13 @@ public class EmployeeWorkedHoursDto {
 
   public static EmployeeWorkedHours toEntity(EmployeeWorkedHoursRequest employeeWorkedHoursRequest, Employee employee) {
     EmployeeWorkedHours employeeWorkedHours = new EmployeeWorkedHours();
-    Integer workedHours = getWorkedHours(employeeWorkedHoursRequest.getWorkedHours());
+    Integer workedHours = employeeWorkedHoursRequest.getWorkedHours();
 
     employeeWorkedHours.setWorkedHours(workedHours);
     employeeWorkedHours.setWorkedDate(employeeWorkedHoursRequest.getWorkedDate());
     employeeWorkedHours.setEmployee(employee);
 
     return employeeWorkedHours;
-  }
-
-  public static Integer getWorkedHours(Integer workedHours) {
-    return workedHours <= Constants.HOURS_ALLOWED_WORKED ? workedHours : Constants.HOURS_ALLOWED_WORKED;
   }
 
 }

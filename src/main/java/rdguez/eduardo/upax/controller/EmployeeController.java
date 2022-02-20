@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.model.*;
+import rdguez.eduardo.upax.service.EmployeeJobService;
+import rdguez.eduardo.upax.service.EmployeePaymentService;
 import rdguez.eduardo.upax.service.EmployeeService;
 import rdguez.eduardo.upax.service.EmployeeWorkedHoursService;
-import rdguez.eduardo.upax.service.impl.EmployeePaymentServiceImpl;
 
 import java.util.List;
 
@@ -21,7 +22,10 @@ public class EmployeeController {
   EmployeeWorkedHoursService employeeWorkedHoursService;
 
   @Autowired
-  EmployeePaymentServiceImpl employeePaymentService;
+  EmployeePaymentService employeePaymentService;
+
+  @Autowired
+  EmployeeJobService employeeJobService;
 
   @ResponseBody
   @PostMapping("/add")
@@ -38,7 +42,7 @@ public class EmployeeController {
   @ResponseBody
   @PostMapping("/job")
   public List<Employee> findEmployeesByJob(@RequestBody EmployeeRequest employeeRequest) {
-    return employeeService.findEmployeesByJob(employeeRequest);
+    return employeeJobService.findEmployeesByJob(employeeRequest);
   }
 
   @ResponseBody

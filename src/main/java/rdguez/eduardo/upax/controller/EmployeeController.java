@@ -6,6 +6,7 @@ import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.model.EmployeeRequest;
 import rdguez.eduardo.upax.model.EmployeeResponse;
 import rdguez.eduardo.upax.model.EmployeeWorkedHoursRequest;
+import rdguez.eduardo.upax.model.EmployeeWorkedHoursResponse;
 import rdguez.eduardo.upax.service.EmployeeService;
 import rdguez.eduardo.upax.service.EmployeeWorkedHoursService;
 
@@ -37,6 +38,14 @@ public class EmployeeController {
   @PostMapping("/job")
   public List<Employee> findEmployeesByJob(@RequestBody EmployeeRequest employeeRequest) {
     return employeeService.findEmployeesByJob(employeeRequest);
+  }
+
+  @ResponseBody
+  @PostMapping("/total_worked_hours")
+  public EmployeeWorkedHoursResponse findTotalWorkedHoursByDates(
+    @RequestBody EmployeeWorkedHoursRequest employeeRequest
+  ) {
+    return employeeWorkedHoursService.findTotalWorkedHoursByDates(employeeRequest);
   }
 
 }

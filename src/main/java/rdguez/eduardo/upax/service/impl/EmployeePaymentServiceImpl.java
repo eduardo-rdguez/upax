@@ -11,6 +11,7 @@ import rdguez.eduardo.upax.service.EmployeePaymentService;
 import rdguez.eduardo.upax.service.EmployeeService;
 import rdguez.eduardo.upax.service.EmployeeWorkedHoursService;
 import rdguez.eduardo.upax.util.DateUtil;
+import rdguez.eduardo.upax.util.RoundUtil;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +45,7 @@ public class EmployeePaymentServiceImpl implements EmployeePaymentService {
     double salaryByDay = salary / lengthOfMonth;
     double payment = salaryByDay * workingDays;
 
-    return Math.round(payment * 100.0) / 100.0;
+    return RoundUtil.roundAvoid(payment, 2);
   }
 
   public EmployeePaymentResponse employeePayment(

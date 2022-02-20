@@ -6,4 +6,6 @@ public class Constants {
 
   public static int HOURS_ALLOWED_WORKED = 20;
 
+  public static String ENGLISH_DATE_FORMAT = "yyyy-MM-dd";
+
 }

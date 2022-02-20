@@ -1,6 +1,7 @@
 package rdguez.eduardo.upax.dto;
 
 import lombok.extern.slf4j.Slf4j;
+import rdguez.eduardo.upax.constant.Constants;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.domain.EmployeeWorkedHours;
 import rdguez.eduardo.upax.model.EmployeeResponse;
@@ -18,13 +19,17 @@ public class EmployeeWorkedHoursDto {
 
   public static EmployeeWorkedHours toEntity(EmployeeWorkedHoursRequest employeeWorkedHoursRequest, Employee employee) {
     EmployeeWorkedHours employeeWorkedHours = new EmployeeWorkedHours();
-    employeeWorkedHours.setWorkedHours(employeeWorkedHoursRequest.getWorkedHours());
+    Integer workedHours = getWorkedHours(employeeWorkedHoursRequest.getWorkedHours());
+
+    employeeWorkedHours.setWorkedHours(workedHours);
     employeeWorkedHours.setWorkedDate(employeeWorkedHoursRequest.getWorkedDate());
     employeeWorkedHours.setEmployee(employee);
 
-    log.info(String.valueOf(employeeWorkedHours.getId()));
-
     return employeeWorkedHours;
+  }
+
+  public static Integer getWorkedHours(Integer workedHours) {
+    return workedHours <= Constants.HOURS_ALLOWED_WORKED ? workedHours : Constants.HOURS_ALLOWED_WORKED;
   }
 
 }

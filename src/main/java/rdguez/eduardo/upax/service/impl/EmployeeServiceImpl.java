@@ -40,12 +40,6 @@ public class EmployeeServiceImpl implements EmployeeService {
   }
 
   @Override
-  public List<Employee> findEmployeesByJob(EmployeeRequest employeeRequest) {
-    Long id = employeeRequest.getJobId();
-    return employeeRepository.findAllByJob_Id(id);
-  }
-
-  @Override
   public EmployeeResponse addEmployee(EmployeeRequest employeeRequest) {
     Optional<Employee> employee = findEmployeeByNameAndLastName(employeeRequest);
     EmployeeResponse employeeResponse = EmployeeResponse.builder().build();

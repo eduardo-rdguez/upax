@@ -13,6 +13,4 @@ public interface EmployeeService {
 
   EmployeeResponse addEmployee(EmployeeRequest employeeRequest);
 
-  List<Employee> findEmployeesByJob(EmployeeRequest employeeRequest);
-
 }

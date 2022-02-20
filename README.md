@@ -45,6 +45,10 @@ Deletes the build directory:
 ./gradlew clean
 ```
 
+## Requirements
+
+https://github.com/eduardo-rdguez/upax/blob/main/assets/examenpracticojavabackend_estef.pdf
+
 ## Postman Collection
 
 https://www.getpostman.com/collections/570e53d2e21a0e200178

@@ -1,5 +1,9 @@
 package rdguez.eduardo.upax.util;
 
+import rdguez.eduardo.upax.constant.Constants;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -10,8 +14,15 @@ public class DateUtil {
     return LocalDate.now();
   }
 
-  static public Date currentDate() {
-    return new Date();
+  static public Date stringToDate(String stringDate) {
+    SimpleDateFormat formatter = new SimpleDateFormat(Constants.ENGLISH_DATE_FORMAT);
+    Date date = null;
+    try {
+      date = formatter.parse(stringDate);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    return date;
   }
 
   static public LocalDate toLocalDate(Date date) {

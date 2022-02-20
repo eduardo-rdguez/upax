@@ -12,7 +12,9 @@ import rdguez.eduardo.upax.model.EmployeeWorkedHoursResponse;
 import rdguez.eduardo.upax.repository.EmployeeWorkedHoursRepository;
 import rdguez.eduardo.upax.service.EmployeeService;
 import rdguez.eduardo.upax.service.EmployeeWorkedHoursService;
+import rdguez.eduardo.upax.util.DateUtil;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -31,24 +33,33 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
   public EmployeeResponse addEmployeeWorkedHours(
     EmployeeWorkedHoursRequest employeeWorkedHoursRequest
   ) {
+    EmployeeResponse employeeResponse = EmployeeResponse.builder().build();
     Long employeeId = employeeWorkedHoursRequest.getEmployeeId();
     Date workedDate = employeeWorkedHoursRequest.getWorkedDate();
 
-    Optional<EmployeeWorkedHours> employeeWorkedHours = findWorkedHoursByEmployeeIdAndWorkedDate(
-      employeeId, workedDate
-    );
-    EmployeeResponse employeeResponse = EmployeeResponse.builder().build();
+    if (validateWorkedDate(workedDate)) {
+      Optional<EmployeeWorkedHours> employeeWorkedHours = findWorkedHoursByEmployeeIdAndWorkedDate(
+        employeeId, workedDate
+      );
 
-    if (employeeWorkedHours.isPresent()) {
-      return employeeResponse;
-    } else {
-      Optional<Employee> employee = employeeService.findEmployeeById(employeeId);
+      if (employeeWorkedHours.isPresent()) {
+        return employeeResponse;
+      } else {
+        Optional<Employee> employee = employeeService.findEmployeeById(employeeId);
 
-      if (employee.isPresent()) {
-        return saveEmployeeWorkedHoursBy(employeeWorkedHoursRequest, employee.get());
+        if (employee.isPresent()) {
+          return saveEmployeeWorkedHoursBy(employeeWorkedHoursRequest, employee.get());
+        }
       }
     }
     return employeeResponse;
+  }
+
+  private boolean validateWorkedDate(Date workedDate) {
+    LocalDate workedLocalDate = DateUtil.toLocalDate(workedDate);
+    LocalDate currentLocalDate = DateUtil.currentLocalDate();
+
+    return currentLocalDate.isAfter(workedLocalDate);
   }
 
   private Optional<EmployeeWorkedHours> findWorkedHoursByEmployeeIdAndWorkedDate(Long id, Date workedDate) {

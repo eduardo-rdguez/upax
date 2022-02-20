@@ -10,6 +10,10 @@ public class DateUtil {
     return LocalDate.now();
   }
 
+  static public Date currentDate() {
+    return new Date();
+  }
+
   static public LocalDate toLocalDate(Date date) {
     return date.toInstant()
       .atZone(ZoneId.systemDefault())

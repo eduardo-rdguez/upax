@@ -12,7 +12,7 @@ import rdguez.eduardo.upax.service.EmployeeWorkedHoursService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/employee")
+@RequestMapping("/api/employees")
 public class EmployeeController {
 
   @Autowired

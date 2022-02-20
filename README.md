@@ -1,9 +1,9 @@
 # Welcome to upax 🚀
 
 ![Version](https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000)
-[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/kefranabg/readme-md-generator#readme)
+[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/eduardo-rdguez/upax/blob/main/README.md)
 
-> This project has been developed with Spring Boot, Spring Data JPA, Gradle, Java y H2 Database.
+> This project has been developed with Spring Boot, Spring Data JPA, Gradle, Java and H2 Database.
 
 ## Tech Specs
 
@@ -18,7 +18,7 @@
 Runs this project as a Spring Boot application:
 
 ```sh
-gradle bootRun
+./gradlew bootRun
 ```
 
 ## Build
@@ -26,7 +26,7 @@ gradle bootRun
 Assembles this project:
 
 ```sh
-gradle build
+./gradlew build
 ```
 
 ## Tests
@@ -34,7 +34,7 @@ gradle build
 Run tests this project:
 
 ```sh
-gradle test
+./gradlew test
 ```
 
 ## Clean
@@ -42,12 +42,12 @@ gradle test
 Deletes the build directory:
 
 ```sh
-gradle clean
+./gradlew clean
 ```
 
 ## Postman Collection
 
-https://www.getpostman.com/collections/2943c1b2ffb08c079fb4
+https://www.getpostman.com/collections/570e53d2e21a0e200178
 
 ## Author
 

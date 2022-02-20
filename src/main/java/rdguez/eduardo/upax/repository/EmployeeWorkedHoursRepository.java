@@ -5,11 +5,14 @@ import org.springframework.stereotype.Repository;
 import rdguez.eduardo.upax.domain.EmployeeWorkedHours;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface EmployeeWorkedHoursRepository extends CrudRepository<EmployeeWorkedHours, Long> {
 
   Optional<EmployeeWorkedHours> findOneByEmployee_IdAndWorkedDate(Long id, Date workedDate);
+
+  List<EmployeeWorkedHours> findAllByEmployee_IdAndWorkedDateBetween(Long id, Date startDate, Date endDate);
 
 }

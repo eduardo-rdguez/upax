@@ -3,12 +3,10 @@ package rdguez.eduardo.upax.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import rdguez.eduardo.upax.domain.Employee;
-import rdguez.eduardo.upax.model.EmployeeRequest;
-import rdguez.eduardo.upax.model.EmployeeResponse;
-import rdguez.eduardo.upax.model.EmployeeWorkedHoursRequest;
-import rdguez.eduardo.upax.model.EmployeeWorkedHoursResponse;
+import rdguez.eduardo.upax.model.*;
 import rdguez.eduardo.upax.service.EmployeeService;
 import rdguez.eduardo.upax.service.EmployeeWorkedHoursService;
+import rdguez.eduardo.upax.service.impl.EmployeePaymentServiceImpl;
 
 import java.util.List;
 
@@ -21,6 +19,9 @@ public class EmployeeController {
 
   @Autowired
   EmployeeWorkedHoursService employeeWorkedHoursService;
+
+  @Autowired
+  EmployeePaymentServiceImpl employeePaymentService;
 
   @ResponseBody
   @PostMapping("/add")
@@ -46,6 +47,14 @@ public class EmployeeController {
     @RequestBody EmployeeWorkedHoursRequest employeeRequest
   ) {
     return employeeWorkedHoursService.findTotalWorkedHoursByDates(employeeRequest);
+  }
+
+  @ResponseBody
+  @PostMapping("/payment")
+  public EmployeePaymentResponse findEmployeePaymentByDates(
+    @RequestBody EmployeeWorkedHoursRequest employeeRequest
+  ) {
+    return employeePaymentService.findEmployeePaymentByDates(employeeRequest);
   }
 
 }

@@ -107,11 +107,12 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
       employeeWorkedHoursRequest
     );
     Integer totalWorkedHours = sumEmployeeWorkedHoursBy(employeeWorkedHoursList);
+    EmployeeWorkedHoursResponse workedHoursResponse = EmployeeWorkedHoursResponse.builder().build();
 
-    return EmployeeWorkedHoursResponse.builder()
-      .totalWorkedHours(totalWorkedHours)
-      .success(!employeeWorkedHoursList.isEmpty())
-      .build();
+    if (!employeeWorkedHoursList.isEmpty()) {
+      return EmployeeWorkedHoursDto.toResponse(totalWorkedHours);
+    }
+    return workedHoursResponse;
   }
 
   private Integer sumEmployeeWorkedHoursBy(List<EmployeeWorkedHours> employeeWorkedHoursList) {

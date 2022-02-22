@@ -64,7 +64,7 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
     return currentLocalDate.isAfter(workedLocalDate);
   }
 
-  public static boolean validateWorkedHours(Integer workedHours) {
+  private boolean validateWorkedHours(Integer workedHours) {
     return workedHours <= Constants.HOURS_ALLOWED_WORKED;
   }
 

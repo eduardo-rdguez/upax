@@ -1,12 +1,10 @@
 package rdguez.eduardo.upax.service;
 
-import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.model.EmployeeRequest;
-
-import java.util.List;
+import rdguez.eduardo.upax.model.EmployeeResponse;
 
 public interface EmployeeJobService {
 
-  List<Employee> findEmployeesByJob(EmployeeRequest employeeRequest);
+  EmployeeResponse findEmployeesByJob(EmployeeRequest employeeRequest);
 
 }

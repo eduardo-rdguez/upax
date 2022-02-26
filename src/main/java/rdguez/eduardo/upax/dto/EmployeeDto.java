@@ -18,6 +18,13 @@ public class EmployeeDto {
       .build();
   }
 
+  public static EmployeeResponse toResponse(List<Employee> employees) {
+    return EmployeeResponse.builder()
+      .employees(employees)
+      .success(!employees.isEmpty())
+      .build();
+  }
+
   public static Employee toEntity(EmployeeRequest employeeRequest, Gender gender, Job job) {
     Employee employee = new Employee();
     employee.setName(employeeRequest.getName());

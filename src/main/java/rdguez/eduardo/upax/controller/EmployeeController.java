@@ -2,14 +2,11 @@ package rdguez.eduardo.upax.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.model.*;
 import rdguez.eduardo.upax.service.EmployeeJobService;
 import rdguez.eduardo.upax.service.EmployeePaymentService;
 import rdguez.eduardo.upax.service.EmployeeService;
 import rdguez.eduardo.upax.service.EmployeeWorkedHoursService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/employees")
@@ -41,7 +38,7 @@ public class EmployeeController {
 
   @ResponseBody
   @PostMapping("/job")
-  public List<Employee> findEmployeesByJob(@RequestBody EmployeeRequest employeeRequest) {
+  public EmployeeResponse findEmployeesByJob(@RequestBody EmployeeRequest employeeRequest) {
     return employeeJobService.findEmployeesByJob(employeeRequest);
   }
 

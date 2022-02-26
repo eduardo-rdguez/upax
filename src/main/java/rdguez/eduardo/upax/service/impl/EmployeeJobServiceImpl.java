@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rdguez.eduardo.upax.domain.Employee;
+import rdguez.eduardo.upax.dto.EmployeeDto;
 import rdguez.eduardo.upax.model.EmployeeRequest;
+import rdguez.eduardo.upax.model.EmployeeResponse;
 import rdguez.eduardo.upax.repository.EmployeeRepository;
 import rdguez.eduardo.upax.service.EmployeeJobService;
 
@@ -20,9 +22,10 @@ public class EmployeeJobServiceImpl implements EmployeeJobService {
 
   @Override
   @Transactional(readOnly = true)
-  public List<Employee> findEmployeesByJob(EmployeeRequest employeeRequest) {
+  public EmployeeResponse findEmployeesByJob(EmployeeRequest employeeRequest) {
     Long id = employeeRequest.getJobId();
-    return employeeRepository.findAllByJob_Id(id);
+    List<Employee> employees = employeeRepository.findAllByJob_Id(id);
+    return EmployeeDto.toResponse(employees);
   }
 
 }

@@ -25,7 +25,7 @@ public class Employee {
   private String lastName;
 
   @Column(name = "BIRTHDATE")
-  @JsonFormat(pattern = "yyyy-MM-dd")
+  @JsonFormat(pattern = "dd-MM-yyyy")
   private Date birthdate;
 
   @ManyToOne

@@ -1,4 +1,4 @@
-package rdguez.eduardo.upax.model.request;
+package rdguez.eduardo.upax.model.response;
 
 import lombok.Builder;
 import lombok.Getter;

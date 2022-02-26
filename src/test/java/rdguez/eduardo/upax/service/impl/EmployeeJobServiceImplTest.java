@@ -7,6 +7,7 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.model.request.EmployeeRequest;
+import rdguez.eduardo.upax.model.response.EmployeeResponse;
 import rdguez.eduardo.upax.repository.EmployeeRepository;
 
 import java.util.List;
@@ -29,8 +30,8 @@ class EmployeeJobServiceImplTest {
       .when(employeeRepository.findAllByJob_Id(Mockito.anyLong()))
       .thenReturn(employeeListMock);
 
-    List<Employee> employeeList = employeeService.findEmployeesByJob(employeeRequest);
+    EmployeeResponse employeeResponse = employeeService.findEmployeesByJob(employeeRequest);
 
-    assert employeeList.isEmpty();
+    assert !employeeResponse.getSuccess();
   }
 }

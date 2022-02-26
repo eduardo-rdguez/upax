@@ -3,6 +3,8 @@ package rdguez.eduardo.upax.service.impl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import rdguez.eduardo.upax.constant.Constants;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.domain.Gender;
@@ -34,6 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
   JobService jobService;
 
   @Override
+  @Transactional(readOnly = true)
   public Optional<Employee> findEmployeeById(Long id) {
     return employeeRepository.findById(id);
   }
@@ -58,6 +61,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     return employeeResponse;
   }
 
+  @Transactional(readOnly = true)
   private Optional<Employee> findEmployeeByNameAndLastName(EmployeeRequest employeeRequest) {
     String name = employeeRequest.getName();
     String lastName = employeeRequest.getLastName();
@@ -73,6 +77,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     return age >= Constants.LEGAL_AGE;
   }
 
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
   private EmployeeResponse saveEmployeeBy(EmployeeRequest employeeRequest, Gender gender, Job job) {
     Employee newEmployee = EmployeeDto.toEntity(employeeRequest, gender, job);
     Employee employee = employeeRepository.save(newEmployee);

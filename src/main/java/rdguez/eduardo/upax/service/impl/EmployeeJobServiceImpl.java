@@ -3,6 +3,7 @@ package rdguez.eduardo.upax.service.impl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.model.EmployeeRequest;
 import rdguez.eduardo.upax.repository.EmployeeRepository;
@@ -18,6 +19,7 @@ public class EmployeeJobServiceImpl implements EmployeeJobService {
   EmployeeRepository employeeRepository;
 
   @Override
+  @Transactional(readOnly = true)
   public List<Employee> findEmployeesByJob(EmployeeRequest employeeRequest) {
     Long id = employeeRequest.getJobId();
     return employeeRepository.findAllByJob_Id(id);

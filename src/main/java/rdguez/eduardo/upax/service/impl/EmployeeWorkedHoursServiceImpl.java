@@ -3,6 +3,8 @@ package rdguez.eduardo.upax.service.impl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import rdguez.eduardo.upax.constant.Constants;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.domain.EmployeeWorkedHours;
@@ -68,10 +70,12 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
     return workedHours <= Constants.HOURS_ALLOWED_WORKED;
   }
 
+  @Transactional(readOnly = true)
   private Optional<EmployeeWorkedHours> findWorkedHoursByEmployeeIdAndWorkedDate(Long id, Date workedDate) {
     return employeeWorkedHoursRepository.findOneByEmployee_IdAndWorkedDate(id, workedDate);
   }
 
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
   private EmployeeResponse saveEmployeeWorkedHoursBy(
     EmployeeWorkedHoursRequest employeeWorkedHoursRequest,
     Employee employee
@@ -85,6 +89,7 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
   }
 
   @Override
+  @Transactional(readOnly = true)
   public List<EmployeeWorkedHours> findWorkedHoursByDates(
     EmployeeWorkedHoursRequest employeeWorkedHoursRequest
   ) {

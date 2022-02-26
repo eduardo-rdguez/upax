@@ -41,7 +41,7 @@ public class EmployeePaymentServiceImpl implements EmployeePaymentService {
     return employeePaymentResponse;
   }
 
-  public Double calculatePaymentBySalaryAndWorkingDays(Double salary, Integer workingDays) {
+  public double calculatePaymentBySalaryAndWorkingDays(double salary, int workingDays) {
     int lengthOfMonth = DateUtil.currentLocalDate().lengthOfMonth();
     double salaryByDay = salary / lengthOfMonth;
     double payment = salaryByDay * workingDays;
@@ -57,9 +57,9 @@ public class EmployeePaymentServiceImpl implements EmployeePaymentService {
       employeeWorkedHoursRequest
     );
 
-    Double salary = employee.getJob().getSalary();
-    Integer workingDays = employeeWorkedHoursList.size();
-    Double payment = calculatePaymentBySalaryAndWorkingDays(salary, workingDays);
+    double salary = employee.getJob().getSalary();
+    int workingDays = employeeWorkedHoursList.size();
+    double payment = calculatePaymentBySalaryAndWorkingDays(salary, workingDays);
 
     return EmployeePaymentDto.toResponse(payment);
   }

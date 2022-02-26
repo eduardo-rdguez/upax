@@ -66,7 +66,7 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
     return currentLocalDate.isAfter(workedLocalDate);
   }
 
-  private boolean validateWorkedHours(Integer workedHours) {
+  private boolean validateWorkedHours(int workedHours) {
     return workedHours <= Constants.HOURS_ALLOWED_WORKED;
   }
 
@@ -111,7 +111,7 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
     List<EmployeeWorkedHours> employeeWorkedHoursList = findWorkedHoursByDates(
       employeeWorkedHoursRequest
     );
-    Integer totalWorkedHours = sumEmployeeWorkedHoursBy(employeeWorkedHoursList);
+    int totalWorkedHours = sumEmployeeWorkedHoursBy(employeeWorkedHoursList);
     EmployeeWorkedHoursResponse workedHoursResponse = EmployeeWorkedHoursResponse.builder().build();
 
     if (!employeeWorkedHoursList.isEmpty()) {
@@ -120,7 +120,7 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
     return workedHoursResponse;
   }
 
-  private Integer sumEmployeeWorkedHoursBy(List<EmployeeWorkedHours> employeeWorkedHoursList) {
+  private int sumEmployeeWorkedHoursBy(List<EmployeeWorkedHours> employeeWorkedHoursList) {
     return employeeWorkedHoursList
       .stream()
       .map(EmployeeWorkedHours::getWorkedHours)

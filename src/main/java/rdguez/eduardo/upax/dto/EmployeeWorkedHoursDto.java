@@ -17,7 +17,7 @@ public class EmployeeWorkedHoursDto {
       .build();
   }
 
-  public static EmployeeWorkedHoursResponse toResponse(Integer totalWorkedHours) {
+  public static EmployeeWorkedHoursResponse toResponse(int totalWorkedHours) {
     return EmployeeWorkedHoursResponse.builder()
       .totalWorkedHours(totalWorkedHours)
       .success(true)
@@ -26,7 +26,7 @@ public class EmployeeWorkedHoursDto {
 
   public static EmployeeWorkedHours toEntity(EmployeeWorkedHoursRequest employeeWorkedHoursRequest, Employee employee) {
     EmployeeWorkedHours employeeWorkedHours = new EmployeeWorkedHours();
-    Integer workedHours = employeeWorkedHoursRequest.getWorkedHours();
+    int workedHours = employeeWorkedHoursRequest.getWorkedHours();
 
     employeeWorkedHours.setWorkedHours(workedHours);
     employeeWorkedHours.setWorkedDate(employeeWorkedHoursRequest.getWorkedDate());

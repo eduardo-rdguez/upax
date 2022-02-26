@@ -69,7 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     return employeeRepository.findOneByNameAndLastName(name, lastName);
   }
 
-  private Boolean validateEmployeeAge(EmployeeRequest employeeRequest) {
+  private boolean validateEmployeeAge(EmployeeRequest employeeRequest) {
     LocalDate birthdate = DateUtil.toLocalDate(employeeRequest.getBirthdate());
     LocalDate currentDate = DateUtil.currentLocalDate();
     int age = Period.between(birthdate, currentDate).getYears();

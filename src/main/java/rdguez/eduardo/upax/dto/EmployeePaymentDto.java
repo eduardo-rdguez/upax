@@ -4,7 +4,7 @@ import rdguez.eduardo.upax.model.EmployeePaymentResponse;
 
 public class EmployeePaymentDto {
 
-  public static EmployeePaymentResponse toResponse(Double payment) {
+  public static EmployeePaymentResponse toResponse(double payment) {
     return EmployeePaymentResponse.builder()
       .payment(payment)
       .success(true)

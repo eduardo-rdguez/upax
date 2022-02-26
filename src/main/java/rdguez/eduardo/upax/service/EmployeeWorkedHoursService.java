@@ -1,9 +1,9 @@
 package rdguez.eduardo.upax.service;
 
 import rdguez.eduardo.upax.domain.EmployeeWorkedHours;
-import rdguez.eduardo.upax.model.response.EmployeeStatusResponse;
 import rdguez.eduardo.upax.model.request.EmployeeWorkedHoursRequest;
 import rdguez.eduardo.upax.model.request.EmployeeWorkedHoursResponse;
+import rdguez.eduardo.upax.model.response.EmployeeStatusResponse;
 
 import java.util.List;
 

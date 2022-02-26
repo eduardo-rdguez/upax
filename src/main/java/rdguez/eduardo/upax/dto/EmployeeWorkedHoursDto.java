@@ -3,9 +3,9 @@ package rdguez.eduardo.upax.dto;
 import lombok.extern.slf4j.Slf4j;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.domain.EmployeeWorkedHours;
-import rdguez.eduardo.upax.model.response.EmployeeStatusResponse;
 import rdguez.eduardo.upax.model.request.EmployeeWorkedHoursRequest;
 import rdguez.eduardo.upax.model.request.EmployeeWorkedHoursResponse;
+import rdguez.eduardo.upax.model.response.EmployeeStatusResponse;
 
 @Slf4j
 public class EmployeeWorkedHoursDto {

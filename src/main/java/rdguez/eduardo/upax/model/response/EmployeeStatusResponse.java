@@ -1,20 +1,17 @@
-package rdguez.eduardo.upax.model;
+package rdguez.eduardo.upax.model.response;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import rdguez.eduardo.upax.domain.Employee;
-
-import java.util.List;
 
 @Builder
 @Getter
 @Setter
 @ToString
-public class EmployeeResponse {
+public class EmployeeStatusResponse {
 
-  private List<Employee> employees;
+  private Long id;
 
   @Builder.Default
   private Boolean success = false;

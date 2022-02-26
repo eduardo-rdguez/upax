@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.domain.EmployeeWorkedHours;
 import rdguez.eduardo.upax.dto.EmployeePaymentDto;
-import rdguez.eduardo.upax.model.EmployeePaymentResponse;
+import rdguez.eduardo.upax.model.response.EmployeePaymentResponse;
 import rdguez.eduardo.upax.model.EmployeeWorkedHoursRequest;
 import rdguez.eduardo.upax.service.EmployeePaymentService;
 import rdguez.eduardo.upax.service.EmployeeService;

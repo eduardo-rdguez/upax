@@ -1,6 +1,6 @@
 package rdguez.eduardo.upax.dto;
 
-import rdguez.eduardo.upax.model.EmployeePaymentResponse;
+import rdguez.eduardo.upax.model.response.EmployeePaymentResponse;
 
 public class EmployeePaymentDto {
 

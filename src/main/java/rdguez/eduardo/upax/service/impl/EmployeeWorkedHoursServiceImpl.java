@@ -9,7 +9,7 @@ import rdguez.eduardo.upax.constant.Constants;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.domain.EmployeeWorkedHours;
 import rdguez.eduardo.upax.dto.EmployeeWorkedHoursDto;
-import rdguez.eduardo.upax.model.EmployeeStatusResponse;
+import rdguez.eduardo.upax.model.response.EmployeeStatusResponse;
 import rdguez.eduardo.upax.model.EmployeeWorkedHoursRequest;
 import rdguez.eduardo.upax.model.EmployeeWorkedHoursResponse;
 import rdguez.eduardo.upax.repository.EmployeeWorkedHoursRepository;

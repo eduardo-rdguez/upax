@@ -1,4 +1,4 @@
-package rdguez.eduardo.upax.model;
+package rdguez.eduardo.upax.model.response;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -9,9 +9,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class EmployeeStatusResponse {
+public class EmployeePaymentResponse {
 
-  private Long id;
+  private Double payment;
 
   @Builder.Default
   private Boolean success = false;

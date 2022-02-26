@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.dto.EmployeeDto;
 import rdguez.eduardo.upax.model.EmployeeRequest;
-import rdguez.eduardo.upax.model.EmployeeResponse;
+import rdguez.eduardo.upax.model.response.EmployeeResponse;
 import rdguez.eduardo.upax.repository.EmployeeRepository;
 import rdguez.eduardo.upax.service.EmployeeJobService;
 

@@ -6,7 +6,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import rdguez.eduardo.upax.domain.Employee;
-import rdguez.eduardo.upax.model.EmployeeRequest;
+import rdguez.eduardo.upax.model.request.EmployeeRequest;
 import rdguez.eduardo.upax.repository.EmployeeRepository;
 
 import java.util.List;

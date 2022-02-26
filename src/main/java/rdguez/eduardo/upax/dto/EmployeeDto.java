@@ -3,7 +3,7 @@ package rdguez.eduardo.upax.dto;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.domain.Gender;
 import rdguez.eduardo.upax.domain.Job;
-import rdguez.eduardo.upax.model.EmployeeRequest;
+import rdguez.eduardo.upax.model.request.EmployeeRequest;
 import rdguez.eduardo.upax.model.response.EmployeeResponse;
 import rdguez.eduardo.upax.model.response.EmployeeStatusResponse;
 

@@ -10,7 +10,7 @@ import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.domain.Gender;
 import rdguez.eduardo.upax.domain.Job;
 import rdguez.eduardo.upax.dto.EmployeeDto;
-import rdguez.eduardo.upax.model.EmployeeRequest;
+import rdguez.eduardo.upax.model.request.EmployeeRequest;
 import rdguez.eduardo.upax.model.response.EmployeeStatusResponse;
 import rdguez.eduardo.upax.repository.EmployeeRepository;
 import rdguez.eduardo.upax.service.EmployeeService;

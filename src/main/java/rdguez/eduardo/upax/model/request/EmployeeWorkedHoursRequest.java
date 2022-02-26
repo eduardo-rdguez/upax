@@ -1,4 +1,4 @@
-package rdguez.eduardo.upax.model;
+package rdguez.eduardo.upax.model.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

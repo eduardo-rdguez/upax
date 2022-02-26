@@ -1,7 +1,7 @@
 package rdguez.eduardo.upax.service;
 
 import rdguez.eduardo.upax.model.response.EmployeePaymentResponse;
-import rdguez.eduardo.upax.model.EmployeeWorkedHoursRequest;
+import rdguez.eduardo.upax.model.request.EmployeeWorkedHoursRequest;
 
 public interface EmployeePaymentService {
 

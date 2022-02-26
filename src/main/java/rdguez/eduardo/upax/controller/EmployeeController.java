@@ -2,7 +2,9 @@ package rdguez.eduardo.upax.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import rdguez.eduardo.upax.model.*;
+import rdguez.eduardo.upax.model.request.EmployeeRequest;
+import rdguez.eduardo.upax.model.request.EmployeeWorkedHoursRequest;
+import rdguez.eduardo.upax.model.request.EmployeeWorkedHoursResponse;
 import rdguez.eduardo.upax.model.response.EmployeePaymentResponse;
 import rdguez.eduardo.upax.model.response.EmployeeResponse;
 import rdguez.eduardo.upax.model.response.EmployeeStatusResponse;

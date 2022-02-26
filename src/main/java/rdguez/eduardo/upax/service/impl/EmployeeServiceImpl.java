@@ -46,9 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     Optional<Employee> employee = findEmployeeByNameAndLastName(employeeRequest);
     EmployeeResponse employeeResponse = EmployeeResponse.builder().build();
 
-    if (employee.isPresent()) {
-      return employeeResponse;
-    } else {
+    if (employee.isEmpty()) {
       Optional<Gender> gender = genderService.findGenderById(employeeRequest.getGenderId());
       Optional<Job> job = jobService.findJobById(employeeRequest.getJobId());
       boolean legalAgeToWork = validateEmployeeAge(employeeRequest);

@@ -38,24 +38,15 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
   ) {
     EmployeeResponse employeeResponse = EmployeeResponse.builder().build();
     Long employeeId = employeeWorkedHoursRequest.getEmployeeId();
-    Date workedDate = employeeWorkedHoursRequest.getWorkedDate();
-    Integer workedHours = employeeWorkedHoursRequest.getWorkedHours();
 
-    if (validateWorkedDate(workedDate) && validateWorkedHours(workedHours)) {
-      Optional<EmployeeWorkedHours> employeeWorkedHours = findWorkedHoursByEmployeeIdAndWorkedDate(
-        employeeId, workedDate
-      );
+    if (validateEmployeeByRequest(employeeWorkedHoursRequest)) {
+      Optional<Employee> employee = employeeService.findEmployeeById(employeeId);
 
-      if (employeeWorkedHours.isPresent()) {
-        return employeeResponse;
-      } else {
-        Optional<Employee> employee = employeeService.findEmployeeById(employeeId);
-
-        if (employee.isPresent()) {
-          return saveEmployeeWorkedHoursBy(employeeWorkedHoursRequest, employee.get());
-        }
+      if (employee.isPresent()) {
+        return saveEmployeeWorkedHoursBy(employeeWorkedHoursRequest, employee.get());
       }
     }
+
     return employeeResponse;
   }
 
@@ -73,6 +64,21 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
   @Transactional(readOnly = true)
   private Optional<EmployeeWorkedHours> findWorkedHoursByEmployeeIdAndWorkedDate(Long id, Date workedDate) {
     return employeeWorkedHoursRepository.findOneByEmployee_IdAndWorkedDate(id, workedDate);
+  }
+
+  private boolean validateEmployeeByRequest(EmployeeWorkedHoursRequest employeeWorkedHoursRequest) {
+    Long employeeId = employeeWorkedHoursRequest.getEmployeeId();
+    Date workedDate = employeeWorkedHoursRequest.getWorkedDate();
+    int workedHours = employeeWorkedHoursRequest.getWorkedHours();
+
+    if (validateWorkedDate(workedDate) && validateWorkedHours(workedHours)) {
+      Optional<EmployeeWorkedHours> employeeWorkedHours = findWorkedHoursByEmployeeIdAndWorkedDate(
+        employeeId, workedDate
+      );
+      return employeeWorkedHours.isEmpty();
+    }
+
+    return false;
   }
 
   @Transactional(propagation = Propagation.REQUIRES_NEW)

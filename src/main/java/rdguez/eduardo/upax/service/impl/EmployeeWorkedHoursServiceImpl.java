@@ -62,7 +62,10 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
   }
 
   @Transactional(readOnly = true)
-  private Optional<EmployeeWorkedHours> findWorkedHoursByEmployeeIdAndWorkedDate(Long id, Date workedDate) {
+  private Optional<EmployeeWorkedHours> findWorkedHoursByEmployeeIdAndWorkedDate(
+    Long id,
+    Date workedDate
+  ) {
     return employeeWorkedHoursRepository.findOneByEmployee_IdAndWorkedDate(id, workedDate);
   }
 
@@ -89,7 +92,9 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
     EmployeeWorkedHours newEmployeeWorkedHours = EmployeeWorkedHoursDto.toEntity(
       employeeWorkedHoursRequest, employee
     );
-    EmployeeWorkedHours employeeWorkedHours = employeeWorkedHoursRepository.save(newEmployeeWorkedHours);
+    EmployeeWorkedHours employeeWorkedHours = employeeWorkedHoursRepository.save(
+      newEmployeeWorkedHours
+    );
 
     return EmployeeWorkedHoursDto.toResponse(employeeWorkedHours);
   }

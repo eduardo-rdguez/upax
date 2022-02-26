@@ -53,12 +53,12 @@ public class EmployeePaymentServiceImpl implements EmployeePaymentService {
     EmployeeWorkedHoursRequest employeeWorkedHoursRequest,
     Employee employee
   ) {
-    List<EmployeeWorkedHours> employeeWorkedHoursList = employeeWorkedHoursService.findWorkedHoursByDates(
+    List<EmployeeWorkedHours> workedHoursList = employeeWorkedHoursService.findWorkedHoursByDates(
       employeeWorkedHoursRequest
     );
 
     double salary = employee.getJob().getSalary();
-    int workingDays = employeeWorkedHoursList.size();
+    int workingDays = workedHoursList.size();
     double payment = calculatePaymentBySalaryAndWorkingDays(salary, workingDays);
 
     return EmployeePaymentDto.toResponse(payment);

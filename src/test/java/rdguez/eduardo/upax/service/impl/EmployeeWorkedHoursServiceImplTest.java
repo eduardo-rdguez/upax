@@ -7,7 +7,7 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.domain.EmployeeWorkedHours;
-import rdguez.eduardo.upax.model.EmployeeResponse;
+import rdguez.eduardo.upax.model.EmployeeStatusResponse;
 import rdguez.eduardo.upax.model.EmployeeWorkedHoursRequest;
 import rdguez.eduardo.upax.model.EmployeeWorkedHoursResponse;
 import rdguez.eduardo.upax.repository.EmployeeWorkedHoursRepository;
@@ -43,12 +43,12 @@ class EmployeeWorkedHoursServiceImplTest {
       .when(employeeService.findEmployeeById(Mockito.anyLong()))
       .thenReturn(Optional.of(new Employee()));
 
-    EmployeeResponse employeeResponse = employeeWorkedHoursService.addEmployeeWorkedHours(
+    EmployeeStatusResponse employeeStatusResponse = employeeWorkedHoursService.addEmployeeWorkedHours(
       employeeWorkedHoursRequest
     );
 
-    assert !employeeResponse.getSuccess();
-    assert employeeResponse.getId() == null;
+    assert !employeeStatusResponse.getSuccess();
+    assert employeeStatusResponse.getId() == null;
   }
 
   @Test
@@ -68,12 +68,12 @@ class EmployeeWorkedHoursServiceImplTest {
       )
       .thenReturn(Optional.of(new EmployeeWorkedHours()));
 
-    EmployeeResponse employeeResponse = employeeWorkedHoursService.addEmployeeWorkedHours(
+    EmployeeStatusResponse employeeStatusResponse = employeeWorkedHoursService.addEmployeeWorkedHours(
       employeeWorkedHoursRequest
     );
 
-    assert !employeeResponse.getSuccess();
-    assert employeeResponse.getId() == null;
+    assert !employeeStatusResponse.getSuccess();
+    assert employeeStatusResponse.getId() == null;
   }
 
   @Test

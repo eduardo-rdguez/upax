@@ -29,13 +29,13 @@ public class EmployeeController {
 
   @ResponseBody
   @PostMapping("/add")
-  public EmployeeResponse addEmployee(@RequestBody EmployeeRequest employeeRequest) {
+  public EmployeeStatusResponse addEmployee(@RequestBody EmployeeRequest employeeRequest) {
     return employeeService.addEmployee(employeeRequest);
   }
 
   @ResponseBody
   @PostMapping("/worked_hours")
-  public EmployeeResponse addEmployeeWorkedHours(@RequestBody EmployeeWorkedHoursRequest employeeRequest) {
+  public EmployeeStatusResponse addEmployeeWorkedHours(@RequestBody EmployeeWorkedHoursRequest employeeRequest) {
     return employeeWorkedHoursService.addEmployeeWorkedHours(employeeRequest);
   }
 

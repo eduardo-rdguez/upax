@@ -9,7 +9,7 @@ import rdguez.eduardo.upax.constant.Constants;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.domain.EmployeeWorkedHours;
 import rdguez.eduardo.upax.dto.EmployeeWorkedHoursDto;
-import rdguez.eduardo.upax.model.EmployeeResponse;
+import rdguez.eduardo.upax.model.EmployeeStatusResponse;
 import rdguez.eduardo.upax.model.EmployeeWorkedHoursRequest;
 import rdguez.eduardo.upax.model.EmployeeWorkedHoursResponse;
 import rdguez.eduardo.upax.repository.EmployeeWorkedHoursRepository;
@@ -33,10 +33,10 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
   EmployeeService employeeService;
 
   @Override
-  public EmployeeResponse addEmployeeWorkedHours(
+  public EmployeeStatusResponse addEmployeeWorkedHours(
     EmployeeWorkedHoursRequest employeeWorkedHoursRequest
   ) {
-    EmployeeResponse employeeResponse = EmployeeResponse.builder().build();
+    EmployeeStatusResponse employeeStatusResponse = EmployeeStatusResponse.builder().build();
     Long employeeId = employeeWorkedHoursRequest.getEmployeeId();
 
     if (validateEmployeeByRequest(employeeWorkedHoursRequest)) {
@@ -47,7 +47,7 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
       }
     }
 
-    return employeeResponse;
+    return employeeStatusResponse;
   }
 
   private boolean validateWorkedDate(Date workedDate) {
@@ -85,7 +85,7 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
   }
 
   @Transactional(propagation = Propagation.REQUIRES_NEW)
-  private EmployeeResponse saveEmployeeWorkedHoursBy(
+  private EmployeeStatusResponse saveEmployeeWorkedHoursBy(
     EmployeeWorkedHoursRequest employeeWorkedHoursRequest,
     Employee employee
   ) {

@@ -11,7 +11,7 @@ import rdguez.eduardo.upax.domain.Gender;
 import rdguez.eduardo.upax.domain.Job;
 import rdguez.eduardo.upax.dto.EmployeeDto;
 import rdguez.eduardo.upax.model.EmployeeRequest;
-import rdguez.eduardo.upax.model.EmployeeResponse;
+import rdguez.eduardo.upax.model.EmployeeStatusResponse;
 import rdguez.eduardo.upax.repository.EmployeeRepository;
 import rdguez.eduardo.upax.service.EmployeeService;
 import rdguez.eduardo.upax.service.GenderService;
@@ -42,9 +42,9 @@ public class EmployeeServiceImpl implements EmployeeService {
   }
 
   @Override
-  public EmployeeResponse addEmployee(EmployeeRequest employeeRequest) {
+  public EmployeeStatusResponse addEmployee(EmployeeRequest employeeRequest) {
     Optional<Employee> employee = findEmployeeByNameAndLastName(employeeRequest);
-    EmployeeResponse employeeResponse = EmployeeResponse.builder().build();
+    EmployeeStatusResponse employeeStatusResponse = EmployeeStatusResponse.builder().build();
 
     if (employee.isEmpty()) {
       Optional<Gender> gender = genderService.findGenderById(employeeRequest.getGenderId());
@@ -56,7 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
       }
     }
 
-    return employeeResponse;
+    return employeeStatusResponse;
   }
 
   @Transactional(readOnly = true)
@@ -76,7 +76,7 @@ public class EmployeeServiceImpl implements EmployeeService {
   }
 
   @Transactional(propagation = Propagation.REQUIRES_NEW)
-  private EmployeeResponse saveEmployeeBy(EmployeeRequest employeeRequest, Gender gender, Job job) {
+  private EmployeeStatusResponse saveEmployeeBy(EmployeeRequest employeeRequest, Gender gender, Job job) {
     Employee newEmployee = EmployeeDto.toEntity(employeeRequest, gender, job);
     Employee employee = employeeRepository.save(newEmployee);
 

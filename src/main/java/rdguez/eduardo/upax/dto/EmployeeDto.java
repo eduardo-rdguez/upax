@@ -5,11 +5,14 @@ import rdguez.eduardo.upax.domain.Gender;
 import rdguez.eduardo.upax.domain.Job;
 import rdguez.eduardo.upax.model.EmployeeRequest;
 import rdguez.eduardo.upax.model.EmployeeResponse;
+import rdguez.eduardo.upax.model.EmployeeStatusResponse;
+
+import java.util.List;
 
 public class EmployeeDto {
 
-  public static EmployeeResponse toResponse(Employee employee) {
-    return EmployeeResponse.builder()
+  public static EmployeeStatusResponse toResponse(Employee employee) {
+    return EmployeeStatusResponse.builder()
       .id(employee.getId())
       .success(true)
       .build();

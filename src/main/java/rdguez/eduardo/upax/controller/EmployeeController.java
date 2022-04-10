@@ -1,9 +1,14 @@
 package rdguez.eduardo.upax.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import rdguez.eduardo.upax.model.request.EmployeeRequest;
 import rdguez.eduardo.upax.model.request.EmployeeWorkedHoursRequest;
+import rdguez.eduardo.upax.model.request.groups.AddEmployee;
+import rdguez.eduardo.upax.model.request.groups.AddWorkedHours;
+import rdguez.eduardo.upax.model.request.groups.FindByJob;
+import rdguez.eduardo.upax.model.request.groups.FindWorkedHours;
 import rdguez.eduardo.upax.model.response.EmployeePaymentResponse;
 import rdguez.eduardo.upax.model.response.EmployeeResponse;
 import rdguez.eduardo.upax.model.response.EmployeeStatusResponse;
@@ -31,26 +36,32 @@ public class EmployeeController {
 
   @ResponseBody
   @PostMapping("/add")
-  public EmployeeStatusResponse addEmployee(@RequestBody EmployeeRequest employeeRequest) {
+  public EmployeeStatusResponse addEmployee(
+    @Validated({AddEmployee.class}) @RequestBody EmployeeRequest employeeRequest
+  ) {
     return employeeService.addEmployee(employeeRequest);
   }
 
   @ResponseBody
   @PostMapping("/worked_hours")
-  public EmployeeStatusResponse addEmployeeWorkedHours(@RequestBody EmployeeWorkedHoursRequest employeeRequest) {
+  public EmployeeStatusResponse addEmployeeWorkedHours(
+    @Validated({AddWorkedHours.class}) @RequestBody EmployeeWorkedHoursRequest employeeRequest
+  ) {
     return employeeWorkedHoursService.addEmployeeWorkedHours(employeeRequest);
   }
 
   @ResponseBody
   @PostMapping("/job")
-  public EmployeeResponse findEmployeesByJob(@RequestBody EmployeeRequest employeeRequest) {
+  public EmployeeResponse findEmployeesByJob(
+    @Validated({FindByJob.class}) @RequestBody EmployeeRequest employeeRequest
+  ) {
     return employeeJobService.findEmployeesByJob(employeeRequest);
   }
 
   @ResponseBody
   @PostMapping("/total_worked_hours")
   public EmployeeWorkedHoursResponse findTotalWorkedHoursByDates(
-    @RequestBody EmployeeWorkedHoursRequest employeeRequest
+    @Validated({FindWorkedHours.class}) @RequestBody EmployeeWorkedHoursRequest employeeRequest
   ) {
     return employeeWorkedHoursService.findTotalWorkedHoursByDates(employeeRequest);
   }
@@ -58,7 +69,7 @@ public class EmployeeController {
   @ResponseBody
   @PostMapping("/payment")
   public EmployeePaymentResponse findEmployeePaymentByDates(
-    @RequestBody EmployeeWorkedHoursRequest employeeRequest
+    @Validated({FindWorkedHours.class}) @RequestBody EmployeeWorkedHoursRequest employeeRequest
   ) {
     return employeePaymentService.findEmployeePaymentByDates(employeeRequest);
   }

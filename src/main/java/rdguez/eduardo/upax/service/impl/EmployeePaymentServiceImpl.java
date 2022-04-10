@@ -12,8 +12,9 @@ import rdguez.eduardo.upax.service.EmployeePaymentService;
 import rdguez.eduardo.upax.service.EmployeeService;
 import rdguez.eduardo.upax.service.EmployeeWorkedHoursService;
 import rdguez.eduardo.upax.util.DateUtil;
-import rdguez.eduardo.upax.util.RoundUtil;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,12 +42,12 @@ public class EmployeePaymentServiceImpl implements EmployeePaymentService {
     return employeePaymentResponse;
   }
 
-  public double calculatePaymentBySalaryAndWorkingDays(double salary, int workingDays) {
+  public BigDecimal calculatePaymentBySalaryAndWorkingDays(double salary, int workingDays) {
     int lengthOfMonth = DateUtil.currentLocalDate().lengthOfMonth();
-    double salaryByDay = salary / lengthOfMonth;
-    double payment = salaryByDay * workingDays;
+    BigDecimal salaryByDay = BigDecimal.valueOf(salary / lengthOfMonth);
+    BigDecimal payment = salaryByDay.multiply(BigDecimal.valueOf(workingDays));
 
-    return RoundUtil.roundAvoid(payment, 2);
+    return payment.setScale(2, RoundingMode.HALF_EVEN);
   }
 
   public EmployeePaymentResponse employeePayment(
@@ -59,7 +60,7 @@ public class EmployeePaymentServiceImpl implements EmployeePaymentService {
 
     double salary = employee.getJob().getSalary();
     int workingDays = workedHoursList.size();
-    double payment = calculatePaymentBySalaryAndWorkingDays(salary, workingDays);
+    BigDecimal payment = calculatePaymentBySalaryAndWorkingDays(salary, workingDays);
 
     return EmployeePaymentDto.toResponse(payment);
   }

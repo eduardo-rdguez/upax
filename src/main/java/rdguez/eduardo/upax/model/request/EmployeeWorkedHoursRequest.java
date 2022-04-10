@@ -18,7 +18,7 @@ import java.util.Date;
 public class EmployeeWorkedHoursRequest {
 
   @JsonProperty("employee_id")
-  @NotNull
+  @NotNull(groups = {AddWorkedHours.class, FindWorkedHours.class})
   private Long employeeId;
 
   @JsonProperty("worked_hours")

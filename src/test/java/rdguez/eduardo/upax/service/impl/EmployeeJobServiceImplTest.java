@@ -24,14 +24,22 @@ class EmployeeJobServiceImplTest {
   @Test
   void findEmployeesByJob() {
     EmployeeRequest employeeRequest = new EmployeeRequest();
-    List<Employee> employeeListMock = List.of();
+    employeeRequest.setJobId(1L);
 
     Mockito
       .when(employeeRepository.findAllByJob_Id(Mockito.anyLong()))
-      .thenReturn(employeeListMock);
+      .thenReturn(this.listOfEmployees());
 
     EmployeeResponse employeeResponse = employeeService.findEmployeesByJob(employeeRequest);
 
-    assert !employeeResponse.getSuccess();
+    assert employeeResponse.getSuccess();
+    assert !employeeResponse.getEmployees().isEmpty();
+    assert employeeResponse.getEmployees().size() == 1;
+  }
+
+  private List<Employee> listOfEmployees() {
+    return List.of(
+      new Employee()
+    );
   }
 }

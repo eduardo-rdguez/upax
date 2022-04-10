@@ -28,7 +28,7 @@ class EmployeeJobServiceImplTest {
 
     Mockito
       .when(employeeRepository.findAllByJob_Id(Mockito.anyLong()))
-      .thenReturn(this.listOfEmployees());
+      .thenReturn(this.mockEmployeeList());
 
     EmployeeResponse employeeResponse = employeeService.findEmployeesByJob(employeeRequest);
 
@@ -37,7 +37,7 @@ class EmployeeJobServiceImplTest {
     assert employeeResponse.getEmployees().size() == 1;
   }
 
-  private List<Employee> listOfEmployees() {
+  private List<Employee> mockEmployeeList() {
     return List.of(
       new Employee()
     );

@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import rdguez.eduardo.upax.constant.Constants;
 import rdguez.eduardo.upax.domain.Employee;
 import rdguez.eduardo.upax.domain.EmployeeWorkedHours;
 import rdguez.eduardo.upax.dto.EmployeeWorkedHoursDto;
@@ -57,10 +56,6 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
     return currentLocalDate.isAfter(workedLocalDate);
   }
 
-  private boolean validateWorkedHours(int workedHours) {
-    return workedHours <= Constants.HOURS_ALLOWED_WORKED;
-  }
-
   @Transactional(readOnly = true)
   private Optional<EmployeeWorkedHours> findWorkedHoursByEmployeeIdAndWorkedDate(
     Long id,
@@ -72,9 +67,8 @@ public class EmployeeWorkedHoursServiceImpl implements EmployeeWorkedHoursServic
   private boolean validateEmployeeByRequest(EmployeeWorkedHoursRequest employeeWorkedHoursRequest) {
     Long employeeId = employeeWorkedHoursRequest.getEmployeeId();
     Date workedDate = employeeWorkedHoursRequest.getWorkedDate();
-    int workedHours = employeeWorkedHoursRequest.getWorkedHours();
 
-    if (validateWorkedDate(workedDate) && validateWorkedHours(workedHours)) {
+    if (validateWorkedDate(workedDate)) {
       Optional<EmployeeWorkedHours> employeeWorkedHours = findWorkedHoursByEmployeeIdAndWorkedDate(
         employeeId, workedDate
       );
